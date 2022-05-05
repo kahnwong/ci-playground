@@ -47,4 +47,6 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
       - name: Test outputs
         run: |
-          echo ${{ steps.meta.outputs.tags }}
+          docker_image_tags=${{ steps.meta.outputs.tags }} # returns sha and latest tag
+          doker_image_tag=${docker_image_tags%$'\n'*}
+          echo $doker_image_tag
