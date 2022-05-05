@@ -46,9 +46,10 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           tags: ${{ steps.meta.outputs.tags }}
+
+      - name: Set IMAGE_TAG
+        id: image-tag
+        run: echo ::set-output name=IMAGE_TAG::${GITHUB_SHA::7}
       - name: Test outputs
-        run: |
-          # docker_image_tags=${{ steps.meta.outputs.tags }} # returns sha and latest tag
-          # doker_image_tag=${docker_image_tags%$'\n'*}
-          export IMAGE_TAG=${GITHUB_SHA::7}
-          echo ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$IMAGE_TAG
+        run: echo ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.image-tag.outputs.IMAGE_TAG  }}
+
