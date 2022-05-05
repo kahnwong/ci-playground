@@ -50,4 +50,5 @@ jobs:
         run: |
           # docker_image_tags=${{ steps.meta.outputs.tags }} # returns sha and latest tag
           # doker_image_tag=${docker_image_tags%$'\n'*}
-          echo ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${GITHUB_SHA::7}
+          export IMAGE_TAG=${GITHUB_SHA::7}
+          echo ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$IMAGE_TAG
