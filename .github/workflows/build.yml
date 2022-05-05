@@ -34,8 +34,7 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=raw,value={{sha}}
-            type=raw,value=latest
+            type=sha
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
@@ -45,3 +44,6 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           tags: ${{ steps.meta.outputs.tags }}
+      - name: Test outputs
+        run: |
+          echo ${{ steps.meta.outputs.tags }}
