@@ -1,37 +1,28 @@
-name: A simple demonstration
+name: CI
 
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
+    branches:
+      - main
 
 jobs:
-  generate_matrix:
-    name: Find services
-    runs-on: ubuntu-latest
-    outputs:
-      matrix: '{"path": ${{ steps.generate_matrix.outputs.matrix }} }'
+  build:
+    runs-on: ubuntu-latest # windows-latest | macos-latest
+    name: Test changed-files
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Generate matrix
-        id: generate_matrix
-        uses: ReyahSolutions/matrix-git-generator@v1
+      - uses: actions/checkout@v3
         with:
-          filters: |
-            prod/*/**
+          fetch-depth: 0 # OR "2" -> To retrieve the preceding commit.
 
-  test_service:
-    name: Test service
-    runs-on: ubuntu-latest
-    needs: [generate_matrix]
-    strategy:
-      matrix: ${{fromJson(needs.generate_matrix.outputs.matrix)}}
-      fail-fast: true
-    steps:
-      # [...] Do what ever you want for each match
-      - name: Example
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v29.0.3
+
+      - name: List all changed files
         run: |
-          cd ${{ matrix.path }}
-          cat *.txt
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            echo "$file was changed"
+          done
