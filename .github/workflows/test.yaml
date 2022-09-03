@@ -1,7 +1,10 @@
 name: A simple demonstration
+
 on:
-  - push
-  - pull_request
+  push:
+    branches:
+      - master
+  pull_request:
 
 jobs:
   generate_matrix:
