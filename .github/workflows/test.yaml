@@ -21,6 +21,6 @@ jobs:
 
       - name: List all changed files
         run: |
-          for file in ${{ steps.changed-files.outputs.dir_names }}; do
-            echo "$file was changed"
+          for folder in ${{ steps.changed-files.outputs.dir_names }}; do
+            echo "$folder was changed"
           done
