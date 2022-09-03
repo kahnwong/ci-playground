@@ -17,7 +17,7 @@ jobs:
         uses: ReyahSolutions/matrix-git-generator@v1
         with:
           filters: |
-            prod/**
+            prod/**/**
 
   test_service:
     name: Test service
