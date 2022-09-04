@@ -35,6 +35,7 @@ jobs:
 
           if [[ $changed_folders == *"${{ matrix.path }}"* ]]; then
             echo ${{ matrix.path }}
+          fi
 
 # for folder in ${{ steps.changed-folders.outputs.all_changed_files }}; do
 #   # echo "$folder was changed"
