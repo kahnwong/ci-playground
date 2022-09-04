@@ -30,20 +30,20 @@ jobs:
 
       - name: Doing something here
         run: |
-          # for folder in ${{ steps.changed-folders.outputs.all_changed_files }}; do
-          #   # echo "$folder was changed"
-          #   cd $folder
-          #   pwd | xargs echo
-          # done
-
-          # ${{ matrix.path }}
-
-          # if [[ " ${arr[*]} " == *"prod/backend"* ]]; then
-          #     echo "arr contains d"
-          # fi
-
           changed_folders=${{ steps.changed-folders.outputs.all_changed_files }}
-          if [[ " ${changed_folders[*]} " == *"${{ matrix.path }}"* ]]; then
-            echo ${{ matrix.path }}
+          echo $changed_folders
 
-# todo: ignore .github and root
+# if [[ " ${changed_folders[*]} " == *"${{ matrix.path }}"* ]]; then
+#   echo ${{ matrix.path }}
+
+# for folder in ${{ steps.changed-folders.outputs.all_changed_files }}; do
+#   # echo "$folder was changed"
+#   cd $folder
+#   pwd | xargs echo
+# done
+
+# ${{ matrix.path }}
+
+# if [[ " ${arr[*]} " == *"prod/backend"* ]]; then
+#     echo "arr contains d"
+# fi
