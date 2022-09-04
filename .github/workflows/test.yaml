@@ -30,7 +30,7 @@ jobs:
 
       - name: Doing something here
         run: |
-          changed_folders=${{ steps.changed-folders.outputs.all_changed_files }}
+          changed_folders="${{ steps.changed-folders.outputs.all_changed_files }}"
           echo $changed_folders
 
 # if [[ " ${changed_folders[*]} " == *"${{ matrix.path }}"* ]]; then
