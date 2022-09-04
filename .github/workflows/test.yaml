@@ -28,7 +28,7 @@ jobs:
           dir_names: "true"
           # files: prod/**
 
-      - name: List all changed files
+      - name: Doing something here
         run: |
           # for folder in ${{ steps.changed-folders.outputs.all_changed_files }}; do
           #   # echo "$folder was changed"
@@ -42,6 +42,8 @@ jobs:
           #     echo "arr contains d"
           # fi
 
-          echo ${{ matrix.path }}
+          changed_folders=${{ steps.changed-folders.outputs.all_changed_files }}
+          if [[ " ${changed_folders[*]} " == *"${{ matrix.path }}"* ]]; then
+            echo ${{ matrix.path }}
 
 # todo: ignore .github and root
