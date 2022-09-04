@@ -31,10 +31,10 @@ jobs:
       - name: Doing something here
         run: |
           changed_folders="${{ steps.changed-folders.outputs.all_changed_files }}"
-          echo $changed_folders
+          # echo $changed_folders
 
-# if [[ " ${changed_folders[*]} " == *"${{ matrix.path }}"* ]]; then
-#   echo ${{ matrix.path }}
+          if [[ $changed_folders == *"${{ matrix.path }}"* ]]; then
+            echo ${{ matrix.path }}
 
 # for folder in ${{ steps.changed-folders.outputs.all_changed_files }}; do
 #   # echo "$folder was changed"
