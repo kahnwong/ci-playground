@@ -17,7 +17,7 @@ jobs:
           images: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}
           tags: |
             type=sha
-            type=raw,value=latest
+            # type=raw,value=latest
       - name: Print value
         run: |
           echo ${{ steps.meta.outputs.tags }}
