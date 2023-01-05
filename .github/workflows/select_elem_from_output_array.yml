@@ -1,0 +1,30 @@
+name: Select elem from output array
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # windows-latest | macos-latest
+    name: Test changed-files
+    steps:
+      - name: Build, tag, and push image to Amazon ECR
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Print value
+        run: |
+          echo ${{ steps.meta.outputs.tags }}
+
+      # - name: Select sha image tag
+      #   run: |
+      #     echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
+      # - name: Test
+      #   run: echo $GITHUB_SHA_SHORT
