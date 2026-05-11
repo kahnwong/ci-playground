@@ -1,23 +1,19 @@
-FROM golang:1.23-alpine AS build
-## for CGO
-#FROM golang:1.25-trixie AS build
-
+FROM rust:1.93-trixie AS build
 WORKDIR /build
 
-COPY go.mod  ./
-RUN go mod download
+COPY Cargo.lock Cargo.toml ./
+RUN mkdir src && echo "fn main() {}" > src/main.rs
+RUN cargo fetch
 
-COPY . ./
+COPY src src
+RUN cargo build --release && \
+    strip target/release/ci-playground && \
+    cp ./target/release/ci-playground /ci-playground
 
-RUN CGO_ENABLED=0 go build -ldflags "-w -s" -o app
-## for CGO
-#RUN CGO_ENABLED=1 go build -ldflags "-w -s" -o /app
+# hadolint ignore=DL3007
+FROM gcr.io/distroless/cc:nonroot AS deploy
 
-FROM gcr.io/distroless/static-debian13:nonroot AS deploy
-## for CGO
-#FROM gcr.io/distroless/base-debian13:nonroot AS deploy
-
-COPY --from=build /build/app /
+COPY --from=build /ci-playground /
 
 EXPOSE 3000
-ENTRYPOINT ["/app"]
+ENTRYPOINT ["/ci-playground"]
