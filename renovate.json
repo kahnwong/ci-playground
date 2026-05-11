@@ -19,7 +19,6 @@
       "versioningTemplate": "docker"
     },
     {
-      "description": "Update Python version in .python-version files",
       "fileMatch": [
         "(^|/)\\.python-version$"
       ],
@@ -61,11 +60,6 @@
       "commitMessageExtra": "to {{{newVersion}}}"
     },
     {
-      "matchManagers": [
-        "pip_pyproject",
-        "dockerfile",
-        "regex"
-      ],
       "matchPackageNames": [
         "python",
         "docker.io/library/python"
@@ -73,7 +67,6 @@
       "groupName": "python version",
       "separateMinorPatch": true,
       "rangeStrategy": "bump",
-      "commitMessageAction": "update",
       "commitMessageTopic": "python",
       "commitMessageExtra": "to {{{newVersion}}}"
     }
