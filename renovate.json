@@ -73,7 +73,7 @@
       "groupName": "python version",
       "separateMinorPatch": true,
       "rangeStrategy": "bump",
-      "commitMessageFormat": "Update {{commitMessageTopic}} to {{newVersion}}",
+      "commitMessageAction": "update",
       "commitMessageTopic": "python",
       "commitMessageExtra": "to {{{newVersion}}}"
     }
