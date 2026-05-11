@@ -37,17 +37,6 @@
       "rangeStrategy": "bump",
       "commitMessageTopic": "go",
       "commitMessageExtra": "to {{{newVersion}}}"
-    },
-    {
-      "matchPackageNames": [
-        "rust",
-        "docker.io/library/rust"
-      ],
-      "groupName": "rust version",
-      "separateMinorPatch": true,
-      "rangeStrategy": "bump",
-      "commitMessageTopic": "rust",
-      "commitMessageExtra": "to {{{newVersion}}}"
     }
   ]
 }
