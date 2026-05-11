@@ -76,16 +76,6 @@
       "commitMessageFormat": "Update {{commitMessageTopic}} to {{newVersion}}",
       "commitMessageTopic": "python",
       "commitMessageExtra": "to {{{newVersion}}}"
-    },
-    {
-      "matchPackageNames": [
-        "ghcr.io/astral-sh/uv"
-      ],
-      "groupName": "uv version",
-      "separateMinorPatch": true,
-      "rangeStrategy": "bump",
-      "commitMessageTopic": "uv",
-      "commitMessageExtra": "to {{{newVersion}}}"
     }
   ]
 }
