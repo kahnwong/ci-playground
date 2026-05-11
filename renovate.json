@@ -36,12 +36,11 @@
         "(^|/)[Dd]ockerfile\\.[a-zA-Z0-9-]+$"
       ],
       "matchStrings": [
-        "FROM ghcr\\.io/astral-sh/uv:python(?<currentValue>\\d+\\.\\d+)-bookworm-slim"
+        "FROM ghcr\\.io/astral-sh/uv:(?<currentValue>python\\d+\\.\\d+-bookworm-slim)"
       ],
       "depNameTemplate": "ghcr.io/astral-sh/uv",
       "datasourceTemplate": "docker",
-      "extractVersion": "^python(?<version>\\d+\\.\\d+)-bookworm-slim$",
-      "versioningTemplate": "docker"
+      "versioningTemplate": "regex:^python(?<major>\\d+)\\.(?<minor>\\d+)-bookworm-slim$"
     }
   ],
   "packageRules": [
