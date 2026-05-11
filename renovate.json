@@ -17,6 +17,19 @@
       "datasourceTemplate": "docker",
       "packageNameTemplate": "docker.io/library/rust",
       "versioningTemplate": "docker"
+    },
+    {
+      "description": "Update Python version in .python-version files",
+      "fileMatch": [
+        "(^|/)\\.python-version$"
+      ],
+      "matchStrings": [
+        "^(?<currentValue>.+)$"
+      ],
+      "depNameTemplate": "python",
+      "datasourceTemplate": "docker",
+      "packageNameTemplate": "docker.io/library/python",
+      "versioningTemplate": "docker"
     }
   ],
   "packageRules": [
@@ -45,6 +58,32 @@
       "separateMinorPatch": true,
       "rangeStrategy": "bump",
       "commitMessageTopic": "rust",
+      "commitMessageExtra": "to {{{newVersion}}}"
+    },
+    {
+      "matchManagers": [
+        "pip_pyproject",
+        "dockerfile",
+        "regex"
+      ],
+      "matchPackageNames": [
+        "python",
+        "docker.io/library/python"
+      ],
+      "groupName": "python version",
+      "separateMinorPatch": true,
+      "rangeStrategy": "bump",
+      "commitMessageTopic": "python",
+      "commitMessageExtra": "to {{{newVersion}}}"
+    },
+    {
+      "matchPackageNames": [
+        "ghcr.io/astral-sh/uv"
+      ],
+      "groupName": "uv version",
+      "separateMinorPatch": true,
+      "rangeStrategy": "bump",
+      "commitMessageTopic": "uv",
       "commitMessageExtra": "to {{{newVersion}}}"
     }
   ]

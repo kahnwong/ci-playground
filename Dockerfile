@@ -1,19 +1,16 @@
-FROM rust:1.93-trixie AS build
-WORKDIR /build
+FROM ghcr.io/astral-sh/uv:python3.13-bookworm-slim
 
-COPY Cargo.lock Cargo.toml ./
-RUN mkdir src && echo "fn main() {}" > src/main.rs
-RUN cargo fetch
+# install deps
+# hadolint ignore=DL3045
+COPY pyproject.toml uv.lock ./
+RUN uv export --no-hashes --no-dev --no-emit-project --output-file=requirements.txt && \
+  pip install --no-cache-dir -r requirements.txt
 
-COPY src src
-RUN cargo build --release && \
-    strip target/release/ci-playground && \
-    cp ./target/release/ci-playground /ci-playground
+# app
+WORKDIR /opt/app
+COPY . .
 
-# hadolint ignore=DL3007
-FROM gcr.io/distroless/cc:nonroot AS deploy
-
-COPY --from=build /ci-playground /
-
-EXPOSE 3000
-ENTRYPOINT ["/ci-playground"]
+# entrypoint
+COPY entrypoint.sh .
+EXPOSE 8080
+CMD bash entrypoint.sh
