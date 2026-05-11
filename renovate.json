@@ -69,6 +69,17 @@
       "rangeStrategy": "bump",
       "commitMessageTopic": "python",
       "commitMessageExtra": "to {{{newVersion}}}"
+    },
+    {
+      "description": "Force Python minor versioning for pyproject.toml",
+      "matchPackageNames": [
+        "python",
+        "docker.io/library/python"
+      ],
+      "matchFiles": [
+        "pyproject.toml"
+      ],
+      "extractVersion": "^(?<version>\\d+\\.\\d+)"
     }
   ]
 }
