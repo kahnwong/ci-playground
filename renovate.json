@@ -33,7 +33,8 @@
       "groupName": "go version",
       "separateMinorPatch": true,
       "rangeStrategy": "bump",
-      "prTitle": "Update go to {{{newVersion}}}"
+      "commitMessageTopic": "go",
+      "commitMessageExtra": "to {{{newVersion}}}"
     },
     {
       "matchPackageNames": [
@@ -44,7 +45,7 @@
       "separateMinorPatch": true,
       "rangeStrategy": "bump",
       "commitMessageTopic": "rust",
-      "prTitle": "Update {{{commitMessageTopic}}} to {{{newVersion}}}"
+      "commitMessageExtra": "to {{{newVersion}}}"
     }
   ]
 }
