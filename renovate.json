@@ -16,9 +16,7 @@
       "depNameTemplate": "rust",
       "datasourceTemplate": "docker",
       "packageNameTemplate": "docker.io/library/rust",
-      "versioningTemplate": "docker",
-      "commitMessageTopic": "rust",
-      "commitMessageExtra": "to {{{newVersion}}}"
+      "versioningTemplate": "docker"
     }
   ],
   "packageRules": [
@@ -36,6 +34,17 @@
       "separateMinorPatch": true,
       "rangeStrategy": "bump",
       "commitMessageTopic": "go",
+      "commitMessageExtra": "to {{{newVersion}}}"
+    },
+    {
+      "matchPackageNames": [
+        "rust",
+        "docker.io/library/rust"
+      ],
+      "groupName": "rust version",
+      "separateMinorPatch": true,
+      "rangeStrategy": "bump",
+      "commitMessageTopic": "rust",
       "commitMessageExtra": "to {{{newVersion}}}"
     }
   ]
