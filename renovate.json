@@ -4,15 +4,42 @@
     "config:recommended",
     "group:allNonMajor"
   ],
+  "regexManagers": [
+    {
+      "fileMatch": [
+        "(^|/)rust-toolchain\\.toml$",
+        "(^|/)rust-toolchain$"
+      ],
+      "matchStrings": [
+        "channel\\s*=\\s*\"(?<currentValue>.*)\""
+      ],
+      "depNameTemplate": "rust",
+      "datasourceTemplate": "docker",
+      "packageNameTemplate": "docker.io/library/rust",
+      "versioningTemplate": "docker"
+    }
+  ],
   "packageRules": [
     {
-      "matchManagers": ["gomod", "dockerfile"],
+      "matchManagers": [
+        "gomod",
+        "dockerfile"
+      ],
       "matchPackageNames": [
         "go",
         "golang",
         "docker.io/library/golang"
       ],
       "groupName": "go version",
+      "separateMinorPatch": true,
+      "rangeStrategy": "bump"
+    },
+    {
+      "matchPackageNames": [
+        "rust",
+        "docker.io/library/rust"
+      ],
+      "groupName": "rust version",
       "separateMinorPatch": true,
       "rangeStrategy": "bump"
     }
