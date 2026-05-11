@@ -16,7 +16,9 @@
       "depNameTemplate": "rust",
       "datasourceTemplate": "docker",
       "packageNameTemplate": "docker.io/library/rust",
-      "versioningTemplate": "docker"
+      "versioningTemplate": "docker",
+      "commitMessageTopic": "rust",
+      "commitMessageExtra": "to {{{newVersion}}}"
     }
   ],
   "packageRules": [
