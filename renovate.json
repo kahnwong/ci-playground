@@ -29,18 +29,6 @@
       "datasourceTemplate": "docker",
       "packageNameTemplate": "docker.io/library/python",
       "versioningTemplate": "docker"
-    },
-    {
-      "fileMatch": [
-        "(^|/)[Dd]ockerfile$",
-        "(^|/)[Dd]ockerfile\\.[a-zA-Z0-9-]+$"
-      ],
-      "matchStrings": [
-        "FROM ghcr\\.io/astral-sh/uv:(?<currentValue>python\\d+\\.\\d+-bookworm-slim)"
-      ],
-      "depNameTemplate": "ghcr.io/astral-sh/uv",
-      "datasourceTemplate": "docker",
-      "versioningTemplate": "regex:^python(?<major>\\d+)\\.(?<minor>\\d+)-bookworm-slim$"
     }
   ],
   "packageRules": [
@@ -74,8 +62,7 @@
     {
       "matchPackageNames": [
         "python",
-        "docker.io/library/python",
-        "ghcr.io/astral-sh/uv"
+        "docker.io/library/python"
       ],
       "groupName": "python version",
       "separateMinorPatch": true,
